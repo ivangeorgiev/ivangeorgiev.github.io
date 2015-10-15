@@ -1,10 +1,6 @@
 ---
 title: Blog
----
-
----
 layout: default
-title: Home
 ---
 
 <div class="posts">
