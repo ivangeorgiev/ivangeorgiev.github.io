@@ -15,12 +15,12 @@ npm install --save expect.js
 {% endhighlight %}
 
 Modify `scripts` list in package.json:
-```json
+{% highlight json %}
   "scripts": {
     "test": "mocha -u bdd -R spec -t 500 --recursive",
     "watch": "mocha -u bdd -R spec -t 500 --recursive --watch"
   },
-```
+{% endhighlight %}
 
 For convenience you can create a `watch.cmd` file:
 
