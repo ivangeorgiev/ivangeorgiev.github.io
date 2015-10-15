@@ -8,11 +8,11 @@ tags: javascript,node.js,node,tdd,mocha
 
 ## Node.js
 
-```bash
+{% highlight bash %}
 npm init
 npm install --save-dev mocha
 npm install --save expect.js
-```
+{% endhighlight %}
 
 Modify `scripts` list in package.json:
 ```json
