@@ -3,6 +3,13 @@ body {
   margin: 0;
 }
 
+rect.chart.background {
+    fill: white;
+    stroke: #bbb;
+    stroke-dasharray: 5 5;
+    stroke-width: 1px;
+}
+
 path.line {
   fill: none;
   stroke: #666;
@@ -23,22 +30,31 @@ path.line.parallel {
   stroke-width: 1px;
 }
 
+rect.legend.parallel {
+    fill: #66f;
+}
+
+
 path.line.daily {
   fill: none;
   stroke: #666;
   stroke-width: 1px;
 }
 
+rect.legend.daily {
+    fill: #666;
+}
 
 path.area {
   fill: #e7e7e7;
 }
 
-path.area.running {
+path.area.running ,
+rect.legend.running
+{
   fill: #a66;
   fill-opacity: 0.5;
 }
-
 
 
 path.area-activity {
@@ -70,6 +86,11 @@ path.area-stopped {
 .y.axis line, .y.axis path {
   fill: none;
   stroke: #000;
+}
+
+rect.legendback {
+    fill: white;
+    stroke: #ddd
 }
 
 rect.pane {

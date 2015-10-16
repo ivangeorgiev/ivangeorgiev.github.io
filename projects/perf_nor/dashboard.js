@@ -1,6 +1,7 @@
   // var freq = $s.freq(data, 'prcStgTotal,prcChkTotal,prcTdTotal,tstartAdj,filter,isWeekend'.split(',')); 
 
     var margin = {top: 80, right: 80, bottom: 80, left: 80},
+        padding = {top: 10, right: 10, bottom: 10, left: 10},
         width = 960 - margin.left - margin.right,
         height = 500 - margin.top - margin.bottom;
 
@@ -30,6 +31,14 @@
     .append("rect")
       .attr("width", width)
       .attr("height", height);
+      
+    svg.append("rect")
+        .attr("class", "chart background")
+        .attr("width", width + margin.left + margin.right - padding.left - padding.right)
+        .attr("height", height + margin.top + margin.bottom - padding.top - padding.bottom)
+        .attr("x", -margin.left + padding.left)
+        .attr("y", -margin.top + padding.right)
+        ;
 
    // Add Scale Labels
    var labels = svg.append("g")
@@ -42,12 +51,20 @@
       .attr("dx", "-1.0em")  
       .attr("dy", "2.0em")
       .text("[Date/Time]");
+      
   labels.append("text")
       .attr("transform", "rotate(-90)")
       .attr("y", -40)
       .attr("dy", ".71em")
       .style("text-anchor", "end")
-      .text("Number of Jobs Running");
+      .text("Number of Active/Started Jobs");
+    
+  labels.append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", width)
+      .attr("dy", "5em")
+      .style("text-anchor", "end")
+      .text("Jobs Executed Daily");
     
     
     var title = svg.append("g")
@@ -58,6 +75,8 @@
         .attr("text-anchor", "middle")
         .style("font-size", "22px")
         .text("DataStage Jobs Execution");
+        
+
 
 console.time('Read Data');
 d3.tsv("data/FDW_32000_MANUAL_Speed1.tsv", transformRecord, function(error, rawData) {
@@ -224,6 +243,44 @@ d3.tsv("data/FDW_32000_MANUAL_Speed1.tsv", transformRecord, function(error, rawD
         .attr("clip-path", "url(#clip)");
 
 
+    svg.append("rect")
+        .attr("x", width - 120 - 3)
+        .attr("y", 0)
+        .attr("width", 120)
+        .attr("height", 60)
+        .attr("class", "legendback");
+
+    var series = [
+            ['Active (per second)', 'running'],
+            ['Started (per 5 min)', 'parallel'],
+            ['Daily', 'daily']
+    ];
+
+    var legend = svg.selectAll(".legend")
+        .data(series)
+        .enter().append("g")
+        .attr("class", "legend")
+        .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+
+
+    legend.append("rect")
+        .attr("x", width - 18)
+        .attr("y", 4)
+        .attr("width", 10)
+        .attr("height", 10)
+        .attr("class", function(d) { return "legend " + d[1]; });
+
+    legend.append("text")
+        .attr("x", width - 24)
+        .attr("y", 9)
+        .attr("dy", ".35em")
+        .attr("class", function(d) { return "legend " + d[1]; })
+        .style("text-anchor", "end")
+        .text(function(d) { return d[0]; });
+        
+        
+        
+        
     /* ------------------------------------------------------------*/
     
     var zoom = d3.behavior.zoom().scaleExtent([1, 1000]).on("zoom", drawZoom);
