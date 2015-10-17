@@ -2,7 +2,7 @@
 title: Setting Up Mocha for Test Driven Development (TDD)
 category: node,javascript,tdd
 tags: javascript,node.js,node,tdd,mocha
-layout: post
+layout: page
 ---
 
 # {{ page.title }}
