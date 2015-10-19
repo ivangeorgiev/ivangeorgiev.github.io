@@ -1,0 +1,104 @@
+<!-- You don't have permission to access /~rossiter/mooc/matching_game/screen5.png -->
+<!doctype html>
+<html>
+    <head>
+        <title>Face Matching Game</title>
+        <style>
+            img {
+                position:absolute;
+            }
+            div {
+                position:absolute;
+                width:500px; 
+                height:500px;
+            }
+            #rightSide {
+                left: 500px;
+                border-left: 1px solid black;
+            }
+        </style>
+<script>
+// The game is wrapped into a function faceMatchingGame which is being
+// assigned to the window.onload event.
+function faceMatchingGame() {
+    // Define constants
+    var faceSrc = "smile.png";
+    var numberOfFaces = 5;
+    var faceSize =  100;
+    var dim = { width: 500, height: 500 };
+
+    // Cache some variables
+    var theBody = document.getElementsByTagName("body")[0];    // We expect one and only one body!
+    var theLeftSide = document.getElementById("leftSide");
+    var theRightSide = document.getElementById("rightSide");
+    
+    newGame();
+    
+    
+    function newGame() {
+        generateFaces();
+        theLeftSide.lastChild.onclick = nextLevel;
+        theBody.onclick = gameOver;
+    }
+    
+    function nextLevel(event) {
+        event.stopPropagation();
+        
+        removeFaces();
+        numberOfFaces += 5;
+        newGame();
+    }
+
+    function removeFaces() {
+        while (theLeftSide.childNodes.length > 0) {
+            theLeftSide.removeChild(theLeftSide.firstChild);
+        }
+        
+        while (theRightSide.childNodes.length > 0) {
+            theRightSide.removeChild(theRightSide.firstChild);
+        }
+    }
+    
+    function generateFaces() {
+        // Generate left side faces
+        
+        for(var i = 0; i < numberOfFaces; i++) {
+            // Generate the position of the new face
+            var x = Math.floor(Math.random()*(dim.width - faceSize)) + "px";
+            var y = Math.floor(Math.random()*(dim.height - faceSize)) + "px";
+            
+            // Create new img element, position it and add it to the div.
+            var face = document.createElement('img');
+            face.src = faceSrc;
+            face.style.width = faceSize + "px";
+            face.style.height = faceSize + "px";
+            face.style.position = "absolute";
+            face.style.left = x;
+            face.style.top = y;
+            theLeftSide.appendChild(face);
+        }
+        
+        // Clone the faces to the right side
+        var rightDiv = theLeftSide.cloneNode(true);
+        console.log(rightDiv)
+        rightDiv.removeChild(rightDiv.lastChild);
+        theRightSide.appendChild(rightDiv);
+    }
+    
+    function gameOver() {
+        alert("Game Over!");
+        theBody.onclick = null;
+        theLeftSide.lastChild.onclick = null;
+    }
+};
+
+// Attach faceMatchingGame to the window.onload event.
+window.onload = faceMatchingGame;
+</script>
+    </head>
+    <body id="theBody">
+        <h1>Matching Game</h1>
+        <p>Click on the extra smiling face on the left.</p>
+        <div id="leftSide"></div><div id="rightSide"></div>
+    </body>
+</html>
