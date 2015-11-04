@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/ivangeorgiev/ivangeorgiev.github.io/issues"
   },
-  "homepage": "https://github.com/ivangeorgiev/ivangeorgiev.github.io#readme"
+  "homepage": "https://github.com/ivangeorgiev/ivangeorgiev.github.io#readme",
+  "dependencies": {
+    "docpad": "^6.78.4"
+  }
 }
