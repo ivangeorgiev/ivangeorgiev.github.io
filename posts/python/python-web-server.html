@@ -9,7 +9,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
 	<!-- Our site title and description -->
-	<title>Home | Ivan Georgiev</title>
+	<title>Start Python Webserver from Command Line | Ivan Georgiev</title>
 	<meta name="description" content="When your website appears in search results in say Google, the text here will be shown underneath your website's title." />
 	<meta name="keywords" content="place, your, website, keywoards, here, keep, them, related, to, the, content, of, your, website" />
 	<meta name="author" content="Your Name" />
@@ -53,9 +53,9 @@
                     <li
                         typeof="sioc:Page"
                         about="/index.html"
-                        class="active"
+                        class=""
                     >
-                        <a href="/index.html" property="dc:title"><span class="glyphicon glyphicon-home"></span>
+                        <a href="/index.html" property="dc:title">
                             Home
                         </a>
                     </li>
@@ -65,7 +65,7 @@
                         about="/blog.html"
                         class=""
                     >
-                        <a href="/blog.html" property="dc:title"><span class="glyphicon glyphicon-edit"></span>
+                        <a href="/blog.html" property="dc:title">
                             IT Blog
                         </a>
                     </li>
@@ -75,7 +75,7 @@
                         about="/contact.html"
                         class=""
                     >
-                        <a href="/contact.html" property="dc:title"><span class="glyphicon glyphicon-envelope"></span>
+                        <a href="/contact.html" property="dc:title">
                             Contact me
                         </a>
                     </li>
@@ -91,7 +91,22 @@
 	<div class="container">
 		<!-- Content -->
 		<section id="content" class="content">
-			
+			<p>Both Python 2 and Python 3 provide HTTP server libaries that allow you to start HTTP server directly without any programming.
+This feature is very useful when workin on a web application that requires a web server.</p>
+<p>The HTTP server modules in Python 2 and Python 3 are different.</p>
+<h2>Python 2</h2>
+
+<pre class="highlight"><code class="hljs bash"><span class="hljs-comment"># Start Python HTTP Server</span>
+$ python -m SimpleHTTPServer <span class="hljs-number">80</span>
+</code></pre>
+<p>For more information check the <a href="https://docs.python.org/2/library/simplehttpserver.html">Python 2 <code>SimpleHTTPServer</code> documentation page</a>.</p>
+<h2>Python 3</h2>
+
+<pre class="highlight"><code class="hljs bash"><span class="hljs-comment"># Start Python 3 HTTP Server</span>
+$ python -m http.server <span class="hljs-number">80</span>
+</code></pre>
+<p>For more information check the <a href="https://docs.python.org/3/library/http.server.html">Python 3 <code>http.server</code> documentation page</a>.</p>
+
 		</section>
     <hr>
 		<!-- Footer -->
